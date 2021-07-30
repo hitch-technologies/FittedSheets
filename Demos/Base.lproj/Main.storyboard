@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Km3-vg-lm2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Km3-vg-lm2">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="4352" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -162,6 +162,17 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="rVn-zz-kQ4"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="4za-ga-6Oq"/>
                             </scrollView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CGF-2T-x9X">
+                                <rect key="frame" x="0.0" y="567" width="375" height="100"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="WF4-we-w8l">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="6F6-YH-y2w"/>
+                                </constraints>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkR-KE-QsB">
                                 <rect key="frame" x="20" y="603" width="335" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -184,9 +195,12 @@
                             <constraint firstItem="LIu-Ve-lKX" firstAttribute="bottom" secondItem="3fm-RZ-aK4" secondAttribute="bottom" id="CVU-D2-jrF"/>
                             <constraint firstItem="LIu-Ve-lKX" firstAttribute="trailing" secondItem="00U-UN-WAK" secondAttribute="trailing" id="GWd-TJ-IHP"/>
                             <constraint firstItem="00U-UN-WAK" firstAttribute="trailing" secondItem="FkR-KE-QsB" secondAttribute="trailing" constant="20" id="Ipa-gk-VxU"/>
+                            <constraint firstItem="CGF-2T-x9X" firstAttribute="leading" secondItem="00U-UN-WAK" secondAttribute="leading" id="JLT-tA-4ou"/>
                             <constraint firstItem="LIu-Ve-lKX" firstAttribute="top" secondItem="3fm-RZ-aK4" secondAttribute="top" id="NpC-X8-0Kw"/>
+                            <constraint firstItem="00U-UN-WAK" firstAttribute="trailing" secondItem="CGF-2T-x9X" secondAttribute="trailing" id="Rrs-rn-3NK"/>
                             <constraint firstItem="eYC-aP-95U" firstAttribute="height" secondItem="3fm-RZ-aK4" secondAttribute="height" multiplier="1.5" id="a6G-qp-b1R"/>
                             <constraint firstItem="eYC-aP-95U" firstAttribute="width" secondItem="3fm-RZ-aK4" secondAttribute="width" multiplier="1.5" id="fPP-mu-0gH"/>
+                            <constraint firstItem="CGF-2T-x9X" firstAttribute="bottom" secondItem="00U-UN-WAK" secondAttribute="bottom" id="iXR-DZ-UPL"/>
                             <constraint firstItem="LIu-Ve-lKX" firstAttribute="leading" secondItem="00U-UN-WAK" secondAttribute="leading" id="yvy-5L-RTd"/>
                         </constraints>
                     </view>
@@ -198,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lUx-m8-PpQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1002" y="761"/>
+            <point key="canvasLocation" x="1000.8" y="760.56971514242889"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Vr-0S-Nmk">

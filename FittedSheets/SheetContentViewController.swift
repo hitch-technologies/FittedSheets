@@ -61,6 +61,7 @@ public class SheetContentViewController: UIViewController {
     public var contentView = UIView()
     private var contentTopConstraint: NSLayoutConstraint?
     private var contentBottomConstraint: NSLayoutConstraint?
+    private var contentHeightConstraint: NSLayoutConstraint?
     private var navigationHeightConstraint: NSLayoutConstraint?
     private var gripSizeConstraints: [NSLayoutConstraint] = []
     public var childContainerView = UIView()
@@ -122,6 +123,10 @@ public class SheetContentViewController: UIViewController {
         self.updateChildViewControllerBottomConstraint(adjustment: -height)
     }
     
+    func didRecieveNewMaxHeight(height: CGFloat) {
+        contentHeightConstraint?.constant = height
+    }
+    
     private func updateCornerRadius() {
         self.contentWrapperView.layer.cornerRadius = self.treatPullBarAsClear ? 0 : self.cornerRadius
         self.childContainerView.layer.cornerRadius = self.treatPullBarAsClear ? self.cornerRadius : 0
@@ -174,7 +179,7 @@ public class SheetContentViewController: UIViewController {
             self.contentView.layoutSubviews()
         }
         
-        self.preferredHeight = self.contentView.systemLayoutSizeFitting(fittingSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .defaultLow).height
+        self.preferredHeight = self.contentView.frame.height//.systemLayoutSizeFitting(fittingSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .defaultLow).height
         self.contentTopConstraint?.isActive = true
         UIView.performWithoutAnimation {
             self.contentView.layoutSubviews()
@@ -184,7 +189,7 @@ public class SheetContentViewController: UIViewController {
     }
     
     private func updateChildViewControllerBottomConstraint(adjustment: CGFloat) {
-        self.contentBottomConstraint?.constant = adjustment
+//        self.contentBottomConstraint?.constant = adjustment
     }
     
     private func setupChildViewController() {
@@ -194,7 +199,8 @@ public class SheetContentViewController: UIViewController {
         Constraints(for: self.childViewController.view) { view in
             view.left.pinToSuperview()
             view.right.pinToSuperview()
-            self.contentBottomConstraint = view.bottom.pinToSuperview()
+            self.contentHeightConstraint = view.height.set(0)
+//            self.contentBottomConstraint = view.bottom.pinToSuperview()
                 view.top.pinToSuperview()
         }
         if self.options.shouldExtendBackground, self.options.pullBarHeight > 0 {

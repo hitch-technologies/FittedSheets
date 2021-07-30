@@ -256,6 +256,7 @@ public class SheetViewController: UIViewController {
         concreteSizes.sort { $0.1 < $1.1 }
         self.orderedSizes = concreteSizes.map({ size, _ in size })
         self.updateAccessibility()
+        self.contentViewController.didRecieveNewMaxHeight(height: concreteSizes.last?.1 ?? 0)
     }
     
     private func updateAccessibility() {
@@ -400,12 +401,8 @@ public class SheetViewController: UIViewController {
                     self.contentViewController.view.transform = CGAffineTransform.identity
                 }
             case .ended:
-                let velocity = (0.2 * gesture.velocity(in: self.view).y)
-                var finalHeight = newHeight - offset - velocity
-                if velocity > 500 {
-                    // They swiped hard, always just close the sheet when they do
-                    finalHeight = -1
-                }
+                let velocity = (0.01 * gesture.velocity(in: self.view).y)
+                let finalHeight = newHeight - offset - velocity
                 
                 let animationDuration = TimeInterval(abs(velocity*0.0002) + 0.2)
                 
@@ -522,11 +519,11 @@ public class SheetViewController: UIViewController {
         }
         switch (size) {
             case .fixed(let height):
-                contentHeight = height + self.keyboardHeight
+                contentHeight = height + self.view.safeAreaInsets.bottom + self.keyboardHeight
             case .fullscreen:
                 contentHeight = fullscreenHeight
             case .intrinsic:
-                contentHeight = self.contentViewController.preferredHeight + self.keyboardHeight
+                contentHeight = self.contentViewController.preferredHeight + self.view.safeAreaInsets.bottom + self.keyboardHeight
             case .percent(let percent):
                 contentHeight = (self.view.bounds.height) * CGFloat(percent) + self.keyboardHeight
             case .marginFromTop(let margin):
