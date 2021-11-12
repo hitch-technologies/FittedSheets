@@ -27,6 +27,8 @@ public class SheetViewController: UIViewController {
 	/// Allow pulling below the minimum height and bounce back. Defaults to true.
 	public var allowPullingPastMinHeight = SheetViewController.allowPullingPastMinHeight
     
+    public var onDismissCompletion: (() -> Void)? = nil
+    
     /// The sizes that the sheet will attempt to pin to. Defaults to intrinsic only.
     public var sizes: [SheetSize] = [.intrinsic] {
         didSet {
@@ -584,6 +586,9 @@ public class SheetViewController: UIViewController {
                 }
             } else {
                 self.dismiss(animated: animated, completion: nil)
+            }
+            if let completion = self.onDismissCompletion {
+                completion()
             }
         }
     }
