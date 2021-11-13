@@ -570,17 +570,23 @@ public class SheetViewController: UIViewController {
         }
     }
     
-    public func attemptDismiss(animated: Bool) {
+    public func attemptDismiss(animated: Bool, completion: (() -> Void)? = nil) {
         if self.shouldDismiss?(self) != false {
             if self.options.useInlineMode {
                 if animated {
                     self.animateOut {
                         self.didDismiss?(self)
+                        if let completion = completion {
+                            completion()
+                        }
                     }
                 } else {
                     self.view.removeFromSuperview()
                     self.removeFromParent()
                     self.didDismiss?(self)
+                    if let completion = completion {
+                        completion()
+                    }
                 }
             } else {
                 self.dismiss(animated: animated, completion: nil)
