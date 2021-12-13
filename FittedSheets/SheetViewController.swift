@@ -519,11 +519,11 @@ public class SheetViewController: UIViewController {
         }
         switch (size) {
             case .fixed(let height):
-                contentHeight = height + self.view.safeAreaInsets.bottom + self.keyboardHeight
+            contentHeight = height + (self.keyboardHeight == 0 ? self.view.safeAreaInsets.bottom: self.keyboardHeight)
             case .fullscreen:
                 contentHeight = fullscreenHeight
             case .intrinsic:
-                contentHeight = self.contentViewController.preferredHeight + self.view.safeAreaInsets.bottom + self.keyboardHeight
+                contentHeight = self.contentViewController.preferredHeight + (self.keyboardHeight == 0 ? self.view.safeAreaInsets.bottom: self.keyboardHeight)
             case .percent(let percent):
                 contentHeight = (self.view.bounds.height) * CGFloat(percent) + self.keyboardHeight
             case .marginFromTop(let margin):
