@@ -136,6 +136,7 @@ public class SheetViewController: UIViewController {
     public var shouldDismiss: ((SheetViewController) -> Bool)?
     public var didDismiss: ((SheetViewController) -> Void)?
     public var sizeChanged: ((SheetViewController, SheetSize, CGFloat) -> Void)?
+    public var heightChanged: ((CGFloat) -> Void)?
     
     public private(set) var contentViewController: SheetContentViewController
     var overlayView = UIView()
@@ -710,6 +711,10 @@ extension SheetViewController: UIGestureRecognizerDelegate {
 }
 
 extension SheetViewController: SheetContentViewDelegate {
+    func contentHeightChanged(height: CGFloat) {
+        self.heightChanged?(height)
+    }
+    
     func pullBarTapped() {
         // Tapping the pull bar is just for accessibility
         guard UIAccessibility.isVoiceOverRunning else { return }

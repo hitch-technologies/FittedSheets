@@ -112,6 +112,7 @@ public class SheetContentViewController: UIViewController {
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.updateAfterLayout()
+        delegate?.contentHeightChanged(height: view.frame.height)
     }
     
     func updateAfterLayout() {

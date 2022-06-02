@@ -9,8 +9,9 @@
 #if os(iOS) || os(tvOS) || os(watchOS)
 import UIKit
 
-protocol SheetContentViewDelegate: class {
+protocol SheetContentViewDelegate: AnyObject {
     func preferredHeightChanged(oldHeight: CGFloat, newSize: CGFloat)
+    func contentHeightChanged(height: CGFloat)
     func pullBarTapped()
 }
 
