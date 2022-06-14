@@ -148,6 +148,7 @@ public class SheetViewController: UIViewController {
     
     /// The child view controller's scroll view we are watching so we can override the pull down/up to work on the sheet when needed
     private weak var childScrollView: UIScrollView?
+    public var allowGesturesInChildScrollView: Bool = false
     
     private var keyboardHeight: CGFloat = 0
     private var firstPanPoint: CGPoint = CGPoint.zero
@@ -688,7 +689,7 @@ extension SheetViewController: UIGestureRecognizerDelegate {
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         guard let panGestureRecognizer = gestureRecognizer as? InitialTouchPanGestureRecognizer, let childScrollView = self.childScrollView, let point = panGestureRecognizer.initialTouchLocation else { return true }
         
-        if let fullSize = sizes.last, currentSize != fullSize {
+        if let fullSize = sizes.last, currentSize != fullSize, allowGesturesInChildScrollView {
             return true
         }
         
