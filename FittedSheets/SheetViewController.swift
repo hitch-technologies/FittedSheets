@@ -242,13 +242,14 @@ public class SheetViewController: UIViewController {
     }
     
     /// Change the sizes the sheet should try to pin to
-    public func setSizes(_ sizes: [SheetSize], animated: Bool = true) {
+    public func setSizes(_ sizes: [SheetSize], initialSheetIndex: Int = 0, animated: Bool = true) {
         guard sizes.count > 0 else {
             return
         }
         self.sizes = sizes
         
-        self.resize(to: sizes[0], animated: animated)
+        let firstIndex = sizes.count > initialSheetIndex ? initialSheetIndex : 0
+        self.resize(to: sizes[firstIndex], animated: animated)
     }
     
     func updateOrderedSizes() {
