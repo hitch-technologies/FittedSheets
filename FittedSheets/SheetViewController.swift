@@ -148,7 +148,12 @@ public class SheetViewController: UIViewController {
     
     /// The child view controller's scroll view we are watching so we can override the pull down/up to work on the sheet when needed
     private weak var childScrollView: UIScrollView?
+    
+    /// This boolean value disable scroll of child view controller's scroll view (it enable scroll in full screen)
     public var allowGesturesInChildScrollView: Bool = false
+    
+    /// This boolean value disable swipe up scroll of child view controller's scroll view
+    public var disableExtendUp: Bool = false
     
     private var keyboardHeight: CGFloat = 0
     private var firstPanPoint: CGPoint = CGPoint.zero
@@ -704,6 +709,10 @@ extension SheetViewController: UIGestureRecognizerDelegate {
             return true
         }
         let topInset = childScrollView.contentInset.top
+        
+        if velocity.y < 0, disableExtendUp {
+            return false
+        }
         
         guard abs(velocity.y) > abs(velocity.x), childScrollView.contentOffset.y <= -topInset else { return false }
         
